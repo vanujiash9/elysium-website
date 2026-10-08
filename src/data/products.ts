@@ -1,0 +1,77 @@
+import type { Product } from "../models/site"
+import { images } from "./images"
+
+export const products = [
+  {
+    slug: "website-ban-hang-dich-vu",
+    title: "Website bán hàng & dịch vụ",
+    category: "Website",
+    desc: "CTA rõ hơn, khách dễ xem dịch vụ và gửi yêu cầu nhanh.",
+    tags: ["Landing page", "Form lead", "Responsive"],
+    image: images.laptop,
+  },
+  {
+    slug: "chatbot-tu-van-tu-dong",
+    title: "Chatbot tư vấn y tế",
+    category: "AI Chatbot",
+    desc: "Hỗ trợ giải đáp dịch vụ phòng khám, giới thiệu chuyên khoa, tiếp nhận đặt lịch và chuyển tiếp cho nhân viên.",
+    tags: ["Healthcare", "Booking", "FAQ"],
+    image: images.abstract,
+  },
+  {
+    slug: "ai-tool-noi-bo",
+    title: "AI tool cho quy trình nội bộ",
+    category: "AI Tool",
+    desc: "Output AI có cấu trúc, dễ kiểm tra và bàn giao cho đội nhóm.",
+    tags: ["AI workflow", "Dashboard", "Data"],
+    image: images.code,
+  },
+  {
+    slug: "crm-van-hanh",
+    title: "CRM vận hành tinh gọn",
+    category: "Dashboard / CRM",
+    desc: "Theo dõi lead, trạng thái công việc và hiệu suất trên một màn hình.",
+    tags: ["CRM", "Reporting", "Team"],
+    image: images.workspace,
+  },
+  {
+    slug: "automation-theo-yeu-cau",
+    title: "Automation theo yêu cầu",
+    category: "Automation",
+    desc: "Giảm nhập tay giữa form, sheet, email và thông báo nội bộ.",
+    tags: ["Form", "Google Sheets", "Email"],
+    image: images.servers,
+  },
+  {
+    slug: "portfolio-thuong-hieu",
+    title: "Portfolio thương hiệu",
+    category: "Website",
+    desc: "Hệ giao diện giàu hình ảnh giúp thương hiệu mới ra mắt thật khác biệt.",
+    tags: ["Brand", "Motion", "CMS"],
+    image: images.architecture,
+  },
+  {
+    slug: "dashboard-phan-tich-kinh-doanh",
+    title: "Dashboard phân tích kinh doanh",
+    category: "Dashboard / CRM",
+    desc: "Tổng hợp dữ liệu bán hàng và vận hành thành báo cáo dễ theo dõi.",
+    tags: ["Analytics", "Realtime", "Reporting"],
+    image: images.studio,
+  },
+  {
+    slug: "website-giao-duc-truc-tuyen",
+    title: "Nền tảng giáo dục trực tuyến",
+    category: "Website",
+    desc: "Website khóa học với hành trình đăng ký và quản lý nội dung tinh gọn.",
+    tags: ["Education", "Course", "CMS"],
+    image: images.team,
+  },
+  {
+    slug: "tro-ly-ai-noi-dung",
+    title: "Trợ lý AI xử lý nội dung",
+    category: "AI Tool",
+    desc: "Chuẩn hóa, phân loại và tạo bản nháp nội dung theo quy trình nội bộ.",
+    tags: ["LLM", "Content", "Workflow"],
+    image: images.abstract,
+  },
+] satisfies readonly Product[]
