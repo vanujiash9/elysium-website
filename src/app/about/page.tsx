@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, Users, Share2, Rss, ArrowRight } from "lucide-react";
+import { Terminal, Users, Share2 } from "lucide-react";
 import Image from "next/image";
 import content from "@/data/content.json";
 
@@ -133,7 +133,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row gap-12 items-end mb-16">
             <div className="md:w-1/2">
               <h2 className="font-manrope font-bold text-4xl text-on-surface mb-4">Culture of Curiosity</h2>
-              <p className="text-on-surface-variant text-lg">We've built an environment where experimentation is celebrated, and "I don't know" is the start of an adventure.</p>
+              <p className="text-on-surface-variant text-lg">We&apos;ve built an environment where experimentation is celebrated, and &ldquo;I don&apos;t know&rdquo; is the start of an adventure.</p>
             </div>
           </div>
           <div className="grid grid-cols-12 gap-6 h-[600px]">
@@ -176,7 +176,7 @@ export default function AboutPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-tertiary/20 rounded-full blur-3xl -ml-32 -mb-32"></div>
           <h2 className="font-manrope font-extrabold text-4xl md:text-5xl text-white mb-8 relative z-10">Join our journey into the unknown.</h2>
-          <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto relative z-10">Whether you're looking to build your next breakthrough or join a team of world-class creators, we're ready for you.</p>
+          <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto relative z-10">Whether you&apos;re looking to build your next breakthrough or join a team of world-class creators, we&apos;re ready for you.</p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
             <button className="btn-primary px-10 py-4 text-lg">
               Work with us

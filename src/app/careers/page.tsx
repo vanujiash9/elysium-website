@@ -49,7 +49,7 @@ export default function CareersPage() {
 
         <section className="bg-primary-container text-on-primary p-12 md:p-20 rounded-[3rem] relative overflow-hidden">
           <div className="relative z-10 max-w-2xl space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">Don't see a position that fits?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight">Don&apos;t see a position that fits?</h2>
             <p className="text-xl opacity-90 leading-relaxed">
               We are always looking for exceptional talent. If you believe you belong here, tell us why.
             </p>

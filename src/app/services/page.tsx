@@ -1,193 +1,172 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Bot, CheckCircle2, Code2, Cpu, GraduationCap, MessageSquare, Settings, Users } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { CheckCircle2, Rocket, ShieldCheck, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import content from "@/data/content.json";
 
-const serviceHighlights = [
-  ["Giao diện responsive", "Tối ưu tốc độ tải", "SEO cơ bản và dễ cập nhật"],
-  ["Chatbot tư vấn", "Công cụ xử lý dữ liệu", "Prompt và workflow theo nghiệp vụ"],
-  ["Form, Sheet, Email", "Thông báo tự động", "Báo cáo vận hành"],
+interface ServiceCard {
+  title: string;
+  eyebrow: string;
+  description: string;
+  timeline: string;
+  price: string;
+  points: string[];
+  cta: string;
+  featured?: boolean;
+}
+
+const serviceCards: ServiceCard[] = [
+  {
+    title: "Xây dựng hiện diện",
+    eyebrow: "Website & Landing Page",
+    description: "Trang web đẹp, rõ CTA và đủ tin cậy để khách hiểu bạn trong vài giây đầu.",
+    timeline: "3-7 ngày",
+    price: "Từ 1tr",
+    points: ["Thông điệp và bố cục bán hàng rõ", "Giao diện mobile-first, dễ đọc", "Form liên hệ, nút Zalo và gọi nhanh", "SEO cơ bản và tốc độ tải tốt", "Bàn giao dễ cập nhật nội dung"],
+    cta: "Tư vấn website",
+  },
+  {
+    title: "Thiết kế trải nghiệm AI",
+    eyebrow: "AI Tool & Chatbot",
+    description: "Luồng AI dùng được thật: tư vấn, thu lead, xử lý nội dung hoặc demo dữ liệu gọn gàng.",
+    timeline: "5-14 ngày",
+    price: "Theo phạm vi",
+    points: ["Chatbot FAQ và kịch bản tư vấn", "Thu lead và chuyển tiếp cho người thật", "Tool xử lý nội dung hoặc dữ liệu", "Output có cấu trúc, dễ kiểm tra", "Demo trước khi nghiệm thu"],
+    cta: "Tư vấn AI tool",
+    featured: true,
+  },
+  {
+    title: "Phát triển quy trình",
+    eyebrow: "Automation nội bộ",
+    description: "Kết nối những việc đang rời rạc để giảm nhập liệu tay và theo dõi trạng thái dễ hơn.",
+    timeline: "7-14 ngày",
+    price: "Theo workflow",
+    points: ["Đồng bộ form, sheet, email", "CRM mini hoặc dashboard vận hành", "Thông báo tự động khi có lead", "Tối ưu quy trình lặp lại", "Hướng dẫn sử dụng sau bàn giao"],
+    cta: "Tư vấn automation",
+  },
 ];
 
-export default function ServicesPage() {
-  const { services, company } = content;
+const proofItems = [
+  { label: "Triển khai nhanh", icon: Rocket },
+  { label: "Tối ưu chi phí", icon: ShieldCheck },
+  { label: "Đồng hành dài hạn", icon: Users },
+];
 
+
+const revealContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
+};
+
+const revealItem: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+function ServicesHeroVisual() {
   return (
-    <main className="overflow-x-hidden">
-      <header className="relative overflow-hidden py-24 md:py-40">
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
-            <span className="inline-block bg-tertiary-container/10 text-tertiary px-4 py-1.5 rounded-full text-xs font-bold tracking-widest mb-6 uppercase">Website & AI Solution</span>
-            <h1 className="text-5xl md:text-7xl font-manrope font-extrabold text-on-surface tracking-tighter leading-[1.1] mb-8">
-              Dịch vụ <span className="text-primary italic">thiết kế & tự động hóa</span>.
-            </h1>
-            <p className="text-xl md:text-2xl text-on-surface-variant leading-relaxed font-light max-w-2xl">
-              {services.description}
-            </p>
-          </motion.div>
+    <div className="relative min-h-[24rem] overflow-hidden rounded-[2rem] border border-white bg-white p-3 shadow-2xl shadow-primary/15 sm:min-h-[30rem] sm:rounded-[2.5rem] sm:p-4">
+      <div className="relative h-full min-h-[22.5rem] overflow-hidden rounded-[1.6rem] bg-surface-container-low sm:min-h-[28rem] sm:rounded-[2rem]">
+        <Image
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=90"
+          alt="Đội ngũ sản phẩm đang trao đổi giải pháp website và AI"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 780px"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-on-surface/70 via-on-surface/10 to-transparent" />
+        <div className="absolute inset-x-4 bottom-4 rounded-[1.4rem] border border-white/30 bg-white/88 p-5 shadow-2xl shadow-on-surface/15 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-6">
+          <p className="text-[0.68rem] font-black uppercase tracking-[0.22em] text-primary">Website • AI • Automation</p>
+          <h2 className="mt-2 max-w-xl text-2xl font-manrope font-extrabold leading-tight text-on-surface sm:text-3xl">Một đội ngũ, một luồng triển khai rõ ràng.</h2>
         </div>
-        <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-surface-container-low rounded-bl-[10rem] opacity-70"></div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-      </header>
+      </div>
+    </div>
+  );
+}
 
-      <section className="max-w-7xl mx-auto px-8 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="md:col-span-8 bg-white rounded-3xl p-10 md:p-16 shadow-sm group hover:shadow-xl transition-all duration-500 flex flex-col md:flex-row gap-12 border border-outline-variant/20"
-          >
-            <div className="flex-1">
-              <div className="w-16 h-16 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary mb-8">
-                <Code2 className="w-10 h-10" />
-              </div>
-              <h3 className="text-3xl font-manrope font-bold text-on-surface mb-6">{services.list[0].title}</h3>
-              <p className="text-on-surface-variant leading-relaxed mb-8 text-lg">
-                {services.list[0].description}
-              </p>
-              <ul className="space-y-4">
-                {serviceHighlights[0].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-on-surface-variant">
-                    <CheckCircle2 className="w-5 h-5 text-tertiary" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex-1 relative min-h-[300px]">
-              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/bannerHero.png"
-                  alt="Đội ngũ Elysium thiết kế website và AI"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
+export default function ServicesPage() {
+  return (
+    <main className="overflow-x-hidden bg-white">
+      <section className="relative overflow-hidden bg-linear-to-br from-white via-sky-50/60 to-white px-6 pt-28 pb-12 md:px-8 md:pt-32 md:pb-16">
+        <div className="absolute left-0 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-[100px]" />
+        <div className="absolute right-0 top-24 h-96 w-96 translate-x-1/3 rounded-full bg-sky-200/50 blur-[120px]" />
+        <motion.div initial="hidden" animate="visible" variants={revealContainer} className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:items-center">
+          <div>
+            <motion.span variants={revealItem} className="text-xs font-black uppercase tracking-[0.24em] text-primary">
+              Dịch vụ Elysium
+            </motion.span>
+            <motion.h1 variants={revealItem} className="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.02] tracking-tight text-on-surface md:text-6xl lg:text-6xl">
+              Website, AI và automation dùng được thật.
+            </motion.h1>
+            <motion.p variants={revealItem} className="mt-6 max-w-xl text-base font-semibold leading-relaxed text-on-surface-variant md:text-lg">
+              Chọn đúng phần cần làm, có demo rõ và bàn giao gọn.
+            </motion.p>
+            <motion.div variants={revealItem} className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/contact" className="btn-primary justify-center px-8 py-3">
+                Nhận tư vấn
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/portfolio" className="btn-ghost justify-center px-8 py-3">
+                Xem demo
+              </Link>
+            </motion.div>
+            <motion.div variants={revealItem} className="mt-7 flex flex-wrap gap-3">
+              {proofItems.map((item) => {
+                const Icon = item.icon;
 
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="md:col-span-4 signature-gradient rounded-3xl p-10 shadow-lg text-white flex flex-col justify-between"
-          >
-            <div>
-              <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-8">
-                <Bot className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-manrope font-bold mb-4">{services.list[2].title}</h3>
-              <p className="opacity-90 leading-relaxed mb-8">
-                {services.list[2].description}
-              </p>
-              <ul className="space-y-4 text-sm">
-                {serviceHighlights[1].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 opacity-70" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <a href={`tel:${company.phone}`} className="flex items-center gap-2 font-bold hover:gap-4 transition-all">
-                Tư vấn ngay: {company.phone}
-              </a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="md:col-span-6 bg-surface-container-low rounded-3xl p-10 flex flex-col gap-8 border border-outline-variant/10"
-          >
-            <div className="flex items-start justify-between">
-              <div className="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
-                <Settings className="w-8 h-8" />
-              </div>
-              <span className="text-outline text-xs font-bold uppercase tracking-widest">Automation</span>
-            </div>
-            <div>
-              <h3 className="text-2xl font-manrope font-bold text-on-surface mb-4">{services.list[3].title}</h3>
-              <p className="text-on-surface-variant leading-relaxed mb-6">
-                {services.list[3].description}
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {serviceHighlights[2].slice(0, 2).map((item) => (
-                  <div key={item} className="bg-white p-4 rounded-xl shadow-sm">
-                    <div className="text-primary font-bold mb-1">{item}</div>
-                    <div className="text-xs text-on-surface-variant">Giảm thao tác thủ công</div>
+                return (
+                  <div key={item.label} className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-on-surface-variant shadow-sm shadow-primary/5">
+                    <Icon className="h-4 w-4 text-primary" />
+                    {item.label}
                   </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
 
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="md:col-span-6 bg-surface-container-high rounded-3xl p-10 flex flex-col justify-between border border-outline-variant/10"
-          >
-            <div className="flex items-start gap-10">
-              <div className="flex-1">
-                <div className="w-14 h-14 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary mb-6">
-                  <Cpu className="w-8 h-8" />
+          <motion.div variants={revealItem}>
+            <ServicesHeroVisual />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <section className="bg-on-surface px-6 py-14 text-white md:px-8 md:py-20">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-120px" }} variants={revealContainer} className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-3">
+          {serviceCards.map((service) => (
+            <motion.article
+              key={service.title}
+              variants={revealItem}
+              className="group relative flex min-h-[30rem] flex-col border-t-2 border-primary bg-white/[0.055] px-6 py-7 shadow-[0_24px_80px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.08] md:px-7 md:py-8"
+            >
+              <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/20 opacity-0 blur-[60px] transition-opacity group-hover:opacity-100" />
+              <div className="relative">
+                <span className="text-xs font-black uppercase tracking-[0.18em] text-on-primary-container">{service.eyebrow}</span>
+                <h2 className="mt-5 text-2xl font-manrope font-extrabold uppercase leading-tight tracking-tight text-white md:text-3xl">{service.title}</h2>
+                <p className="mt-4 text-sm font-semibold leading-relaxed text-white/68">{service.description}</p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white">{service.timeline}</span>
+                  <span className="rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white">{service.price}</span>
                 </div>
-                <h3 className="text-2xl font-manrope font-bold text-on-surface mb-4">{services.list[1].title}</h3>
-                <ul className="space-y-3">
-                  {[services.list[1].description, services.list[4].description, services.list[5].description].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-on-surface-variant">
-                      <span className="w-1.5 h-1.5 rounded-full bg-tertiary mt-2 shrink-0"></span>
-                      {item}
+
+                <ul className="mt-7 space-y-4">
+                  {service.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3 text-sm font-bold leading-relaxed text-white/90">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 fill-on-primary-container text-on-primary-container" />
+                      <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="hidden sm:flex w-40 h-40 bg-white rounded-full overflow-hidden shadow-inner p-2 border-4 border-surface-container items-center justify-center text-primary">
-                <GraduationCap className="w-20 h-20" />
-              </div>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 text-tertiary font-bold">
-                <MessageSquare className="w-5 h-5" /> Chatbot
-              </span>
-              <span className="inline-flex items-center gap-2 text-primary font-bold">
-                <Users className="w-5 h-5" /> Shop & doanh nghiệp
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-      <section className="max-w-7xl mx-auto px-8 mb-20">
-        <div className="bg-on-surface rounded-[3rem] p-12 md:p-24 relative overflow-hidden flex flex-col items-center text-center">
-          <div className="absolute inset-0 opacity-20">
-            <Image
-              src="/bannerHero.png"
-              alt="Elysium team"
-              fill
-              sizes="100vw"
-              className="object-cover grayscale"
-            />
-          </div>
-          <div className="relative z-10 max-w-2xl">
-            <h2 className="text-4xl md:text-6xl font-manrope font-extrabold text-white tracking-tight mb-8">Bạn cần website, AI tool hay chatbot?</h2>
-            <p className="text-slate-300 text-lg md:text-xl mb-12 font-light">
-              Gửi yêu cầu cho Elysium, chúng tôi sẽ tư vấn hướng triển khai gọn nhất theo mục tiêu và ngân sách của bạn.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/contact" className="btn-primary px-10 py-5 text-lg">
-                Nhận tư vấn
-              </Link>
-              <a href={`tel:${company.phone}`} className="btn-ghost px-10 py-5 text-lg bg-transparent! text-white! border-white/20">
-                Gọi {company.phone}
-              </a>
-            </div>
-          </div>
-        </div>
+                <Link href="/contact" className="mt-8 inline-flex text-sm font-black uppercase tracking-[0.14em] text-on-primary-container transition-colors hover:text-white">
+                  {service.cta}
+                </Link>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
       </section>
     </main>
   );

@@ -71,19 +71,27 @@
 
   .btn-primary {
     background: var(--signature-gradient);
-    @apply text-on-primary px-8 h-12 rounded-full flex items-center justify-center font-bold text-sm shadow-xl shadow-primary/20 hover:opacity-90 transition-all active:scale-95;
+    @apply text-on-primary px-8 h-12 rounded-full flex items-center justify-center font-bold text-sm shadow-xl shadow-primary/20 hover:opacity-90 transition-transform transition-opacity active:scale-95;
   }
 
-  .btn-attention {
-    animation: cta-pulse 2.4s ease-in-out infinite;
+  .btn-hero-cta {
+    animation: ctaPulse 1.8s ease-in-out infinite;
   }
 
-  .btn-attention:hover {
-    animation-play-state: paused;
+  .btn-hero-cta::before {
+    content: "";
+    @apply absolute inset-y-0 -left-10 w-10 rotate-12 bg-white/40 blur-sm;
+    animation: ctaShine 2.4s ease-in-out infinite;
+  }
+
+  .btn-hero-cta::after {
+    content: "";
+    @apply absolute -inset-1 -z-10 rounded-full bg-primary/28 blur-lg;
+    animation: ctaGlow 1.8s ease-in-out infinite;
   }
 
   .btn-ghost {
-    @apply bg-white border border-outline-variant/30 text-primary px-8 h-12 rounded-full flex items-center justify-center font-bold text-sm hover:bg-surface-container-low transition-all active:scale-95;
+    @apply bg-white border border-outline-variant/30 text-primary px-8 h-12 rounded-full flex items-center justify-center font-bold text-sm hover:bg-surface-container-low transition-transform transition-colors active:scale-95;
   }
 
   .text-gradient {
@@ -115,15 +123,60 @@
     }
   }
 
-  @keyframes cta-pulse {
+  @keyframes ctaPulse {
     0%,
     100% {
       transform: scale(1);
-      box-shadow: 0 20px 25px -5px rgb(0 61 155 / 0.2), 0 8px 10px -6px rgb(0 61 155 / 0.2);
+      box-shadow: 0 20px 35px rgb(0 61 155 / 0.2);
     }
     50% {
-      transform: scale(1.045);
-      box-shadow: 0 26px 45px -12px rgb(0 82 204 / 0.45), 0 0 0 8px rgb(0 82 204 / 0.08);
+      transform: scale(1.055);
+      box-shadow: 0 24px 48px rgb(0 61 155 / 0.34);
+    }
+  }
+
+  @keyframes ctaShine {
+    0% {
+      transform: translateX(0) rotate(12deg);
+      opacity: 0;
+    }
+    18%,
+    55% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(18rem) rotate(12deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes ctaGlow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.98);
+    }
+    50% {
+      opacity: 0.95;
+      transform: scale(1.08);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    .skeleton::after,
+    .btn-hero-cta,
+    .btn-hero-cta::before,
+    .btn-hero-cta::after {
+      animation: none !important;
     }
   }
 }

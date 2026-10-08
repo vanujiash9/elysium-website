@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next'
- 
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://elysium.vn'
-  
+
   const routes = [
     '',
     '/about',
@@ -12,11 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/portfolio',
     '/services',
   ]
- 
+
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === '' ? 'daily' : 'weekly' as any,
+    changeFrequency: route === '' ? 'daily' : 'weekly',
     priority: route === '' ? 1 : 0.8,
   }))
 }

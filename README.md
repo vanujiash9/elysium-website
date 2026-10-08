@@ -1,85 +1,76 @@
-# Hasync. - Digital Solutions & Software Engineering
+# Elysium - Website & AI Solutions
 
-**Hasync.** is a premium, high-performance agency website built for the future of digital transformation. We specialize in engineering precision software solutions, including modern Web, Mobile, and AI-driven platforms.
+**Elysium** là website agency giới thiệu dịch vụ thiết kế Website, AI Tool, Chatbot và Automation theo yêu cầu cho cá nhân, cửa hàng và doanh nghiệp nhỏ.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Điểm nổi bật
 
-*   **Next.js 16+ & React 19**: Leveraging the cutting-edge capabilities of the latest React ecosystem.
-*   **Tailwind CSS 4**: Utilizing the newest utility-first CSS framework for ultra-fast, responsive styling.
-*   **Framer Motion**: Smooth, high-end animations that elevate the user experience.
-*   **Dynamic Content**: Architecture driven by a central JSON data system (`src/data/content.json`) for easy updates.
-*   **SEO Optimized**: Built-in support for dynamic sitemaps, robots.txt, and metadata optimization.
-*   **Enterprise-Ready UI**: Includes pages for Services, Portfolio, Insights, Careers, and more.
-*   **Modern Aesthetics**: Glassmorphism, bento grids, and high-fidelity typography.
+- **Next.js 16 & React 19**: Sử dụng App Router và hệ sinh thái React mới.
+- **Tailwind CSS 4**: Styling responsive, hiện đại và dễ mở rộng.
+- **Framer Motion**: Hiệu ứng chuyển động mượt cho các section quan trọng.
+- **Content-driven**: Nội dung chính được quản lý tập trung tại `src/data/content.json`.
+- **SEO-ready**: Hỗ trợ metadata, sitemap và robots trong cấu trúc Next.js.
+- **Dịch vụ rõ ràng**: Website, AI Tool, Chatbot, Automation, dashboard/CRM và hỗ trợ demo AI/Data.
 
-## 🛠️ Technology Stack
+## 🛠️ Công nghệ sử dụng
 
-*   **Framework**: [Next.js 16+](https://nextjs.org/) (App Router)
-*   **Library**: [React 19](https://react.dev/)
-*   **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-*   **Animations**: [Framer Motion](https://www.framer.com/motion/)
-*   **Icons**: [Lucide React](https://lucide.dev/)
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **Typeface**: [Geist](https://vercel.com/font)
+- **Framework**: [Next.js 16](https://nextjs.org/) App Router
+- **Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
 
-## 📁 Project Structure
+## 📁 Cấu trúc dự án
 
 ```text
-agency/
-├── public/              # Static assets (images, icons, brand assets)
+Agency-Hasync-Portfolio/
+├── public/              # Static assets, icons, images
 ├── src/
-│   ├── app/             # Application Router (pages, layouts, and API)
-│   ├── components/      # Modular, reusable React components
-│   ├── data/            # Local data store (content.json)
-│   └── context/         # Global state management
-├── package.json         # Project manifests and scripts
+│   ├── app/             # Next.js App Router pages/layouts
+│   ├── components/      # Reusable React components
+│   └── data/            # Content source (content.json)
+├── package.json         # Scripts and dependencies
 └── tsconfig.json        # TypeScript configuration
 ```
 
-## 🏁 Getting Started
+## 🏁 Chạy local
 
-### Prerequisites
+### Yêu cầu
 
-*   Node.js 18.17 or later
-*   npm, yarn, pnpm, or bun
+- Node.js 20+ khuyến nghị cho Next.js 16
+- npm
 
-### Installation
+### Cài đặt
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/hasync/agency-web.git
-    cd agency
-    ```
+```bash
+npm install
+```
 
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
+### Chạy development server
 
-3.  **Run the development server**:
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 
-4.  **View the project**:
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
+Mở [http://localhost:3000](http://localhost:3000) để xem website.
 
-## 📜 Available Scripts
+## 📜 Scripts
 
-*   `npm run dev`: Fires up the development server with Hot Module Replacement.
-*   `npm run build`: Compiles the application for production.
-*   `npm run start`: Serves the production build.
-*   `npm run lint`: Performs static analysis to ensure code quality.
+- `npm run dev`: Chạy development server.
+- `npm run build`: Build production.
+- `npm run start`: Chạy production server sau khi build.
+- `npm run lint`: Kiểm tra lint cho source code của app.
 
-## 🚢 Deployment
+## 🚢 Deploy
 
-Optimized for deployment on [Vercel](https://vercel.com/) with zero configuration required.
+Dự án phù hợp để deploy trên [Vercel](https://vercel.com/) hoặc các nền tảng hỗ trợ Next.js.
+
+## 📌 Nội dung thương hiệu
+
+Thông tin công ty, dịch vụ, portfolio, FAQ và bài viết nằm trong [src/data/content.json](src/data/content.json). Khi cần đổi nội dung hiển thị trên website, ưu tiên cập nhật file này trước.
 
 ---
 
-### Giới thiệu (Vietnamese)
-**Hasync.** là một nền tảng website chuyên nghiệp dành cho các Agency, được xây dựng trên nền tảng công nghệ mới nhất (Next.js 16, React 19). Thiết kế tập trung vào hiệu suất cao, trải nghiệm người dùng mượt mà với các hiệu ứng chuyển động cao cấp và tối ưu hóa SEO toàn diện.
-
-Built with technical excellence by **Hasync Team**.
+Built by **Elysium Team**.

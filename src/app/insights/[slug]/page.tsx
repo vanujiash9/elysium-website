@@ -65,7 +65,7 @@ export default function BlogDetailPage() {
               In the current landscape of rapid AI evolution, the traditional methods of handling data processing have reached their limits. When we started building our proprietary distributed system, we knew that memory safety and raw execution speed were not negotiable.
             </p>
             <p>
-              Our team spent months auditing various low-level languages before settling on a hybrid architecture. By leveraging the power of modern cloud-native principles and combining them with deep technical precision, we've managed to achieve what many thought was impossible: sub-millisecond response times at petabyte scale.
+              Our team spent months auditing various low-level languages before settling on a hybrid architecture. By leveraging the power of modern cloud-native principles and combining them with deep technical precision, we&apos;ve managed to achieve what many thought was impossible: sub-millisecond response times at petabyte scale.
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export default function BlogDetailPage() {
           </div>
 
           <p>
-            As we continue to explore the frontier of software engineering, we remain committed to our founding principle: great software is an engineered masterpiece. We don't just write code; we build the digital infrastructure for the future.
+            As we continue to explore the frontier of software engineering, we remain committed to our founding principle: great software is an engineered masterpiece. We don&apos;t just write code; we build the digital infrastructure for the future.
           </p>
         </div>
 

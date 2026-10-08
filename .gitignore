@@ -26,6 +26,7 @@
 
 # local tooling and generated project notes
 /.claude/
+/.playwright-mcp/
 /.specify/
 /docs/
 .mcp.json

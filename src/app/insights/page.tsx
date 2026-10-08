@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Send, Clock, User } from "lucide-react";
+import { Send, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import content from "@/data/content.json";

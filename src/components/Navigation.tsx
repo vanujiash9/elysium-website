@@ -13,17 +13,18 @@ export function Navigation() {
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isOpen]);
+    const previousOverflow = document.body.style.overflow;
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = previousOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -40,7 +41,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-manrope font-bold transition-all ${pathname === item.href
+                className={`text-sm font-manrope font-bold transition-colors ${pathname === item.href
                   ? 'text-primary border-b-2 border-primary pb-1'
                   : 'text-on-surface-variant hover:text-primary'
                   }`}
@@ -51,8 +52,9 @@ export function Navigation() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link href="/contact" className="hidden sm:flex signature-gradient btn-attention text-on-primary px-8 py-3 rounded-full font-bold text-sm hover:opacity-80 transition-all active:scale-95">
+            <Link href="/contact" className="group hidden items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary/25 ring-4 ring-primary/10 transition-all hover:bg-primary-container hover:shadow-2xl hover:shadow-primary/30 active:scale-95 sm:flex motion-safe:animate-[ctaZoom_1.8s_ease-in-out_infinite]">
               Nhận tư vấn
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
 
             {/* Mobile Toggle */}
@@ -87,6 +89,7 @@ export function Navigation() {
                 >
                   <Link
                     href={item.href}
+                    onClick={() => setIsOpen(false)}
                     className={`text-4xl font-extrabold tracking-tighter ${pathname === item.href ? 'text-primary' : 'text-on-surface'
                       }`}
                   >
@@ -113,6 +116,7 @@ export function Navigation() {
               </div>
               <Link
                 href="/contact"
+                onClick={() => setIsOpen(false)}
                 className="w-full signature-gradient text-white py-6 rounded-2xl font-bold text-xl flex items-center justify-center gap-2 group"
               >
                 Tư vấn ngay

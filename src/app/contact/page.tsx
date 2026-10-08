@@ -1,30 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import content from "@/data/content.json";
-
-const contactFields = [
-  {
-    label: "Email",
-    value: content.company.email,
-    href: `mailto:${content.company.email}`,
-    icon: Mail,
-  },
-  {
-    label: "Điện thoại / Zalo",
-    value: content.company.phone,
-    href: `tel:${content.company.phone}`,
-    icon: Phone,
-  },
-  {
-    label: "Hỗ trợ",
-    value: content.company.address,
-    href: null,
-    icon: MapPin,
-  },
-];
 
 export default function ContactPage() {
   const { company } = content;
@@ -55,87 +33,87 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="overflow-x-hidden bg-white">
-      <section className="px-6 pt-28 pb-12 md:px-8 md:pt-32 md:pb-14">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }}>
-            <header>
-              <span className="text-xs font-black uppercase tracking-[0.22em] text-primary">Liên hệ Elysium</span>
-              <h1 className="mt-4 max-w-xl text-4xl font-extrabold tracking-tight text-on-surface md:text-5xl">
-                Kể nhanh nhu cầu, Elysium phản hồi phương án.
-              </h1>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-on-surface-variant">
-                Form sẽ mở email soạn sẵn gửi về {company.email}. Bạn cũng có thể nhắn Zalo nếu cần trao đổi nhanh.
-              </p>
-            </header>
+    <main className="overflow-hidden bg-white">
+      <section className="relative flex min-h-screen items-start overflow-hidden px-5 pb-10 pt-28 sm:px-6 md:px-8 md:pt-32 xl:items-center xl:pb-12">
+        <div className="absolute -left-32 top-24 h-96 w-96 rounded-full bg-primary/8 blur-[90px]" />
+        <div className="absolute -right-32 bottom-0 h-[28rem] w-[28rem] rounded-full bg-primary-container/10 blur-[110px]" />
 
-            <div className="mt-7 grid gap-3">
-              {contactFields.map((field) => {
-                const Icon = field.icon;
-                const contentNode = (
-                  <div className="flex items-center gap-3 border-t border-outline-variant/20 py-4 transition-colors hover:text-primary">
-                    <Icon className="h-5 w-5 shrink-0 text-primary" />
-                    <div className="min-w-0">
-                      <div className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">{field.label}</div>
-                      <div className="mt-1 truncate text-base font-manrope font-extrabold text-on-surface">{field.value}</div>
-                    </div>
-                  </div>
-                );
-
-                return field.href ? (
-                  <a key={field.label} href={field.href} className="block">
-                    {contentNode}
-                  </a>
-                ) : (
-                  <div key={field.label}>{contentNode}</div>
-                );
-              })}
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 xl:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] xl:items-center">
+          <header>
+            <div className="mb-5 flex items-center gap-4">
+              <span className="h-0.5 w-12 bg-primary" />
+              <span className="text-xs font-black uppercase tracking-[0.28em] text-primary">Liên hệ Elysium</span>
             </div>
-          </motion.div>
+            <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.98] tracking-tight text-on-surface md:text-6xl xl:text-7xl">
+              Kể nhanh nhu cầu, <span className="text-primary">Elysium</span> phản hồi phương án phù hợp.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg font-semibold leading-relaxed text-on-surface-variant md:text-xl">
+              Mô tả ngắn mục tiêu và nhu cầu. Elysium sẽ liên hệ lại sớm.
+            </p>
+            <div className="mt-10 grid max-w-2xl gap-4 border border-outline-variant/35 bg-white/80 px-5 py-4 shadow-[0_20px_70px_rgba(0,82,204,0.06)] sm:grid-cols-3 xl:mt-8">
+              <div>
+                <p className="text-xs font-bold text-on-surface-variant">Email</p>
+                <a href={`mailto:${company.email}`} className="mt-1 block truncate text-sm font-black text-primary">{company.email}</a>
+              </div>
+              <div className="border-outline-variant/35 sm:border-l sm:pl-5">
+                <p className="text-xs font-bold text-on-surface-variant">Điện thoại / Zalo</p>
+                <a href={`tel:${company.phone}`} className="mt-1 block text-sm font-black text-primary">{company.phone}</a>
+              </div>
+              <div className="border-outline-variant/35 sm:border-l sm:pl-5">
+                <p className="text-xs font-bold text-on-surface-variant">Phản hồi</p>
+                <p className="mt-1 text-sm font-black text-primary">Trong 24 giờ</p>
+              </div>
+            </div>
+          </header>
 
-          <motion.form initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28, delay: 0.06 }} className="border-t-2 border-primary pt-5" onSubmit={handleSubmit}>
-            <div className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
-              <label className="space-y-1.5">
-                <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Tên *</span>
-                <input value={name} onChange={(event) => setName(event.target.value)} required type="text" className="w-full border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="Nguyễn Văn A" />
-              </label>
-
-              <label className="space-y-1.5">
-                <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Số điện thoại / Zalo *</span>
-                <input value={phone} onChange={(event) => setPhone(event.target.value)} required type="tel" className="w-full border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="0338 994 373" />
-              </label>
-
-              <label className="space-y-1.5">
-                <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Email</span>
-                <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" className="w-full border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="ban@example.com" />
-              </label>
-
-              <label className="space-y-1.5">
-                <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Nhu cầu *</span>
-                <input value={need} onChange={(event) => setNeed(event.target.value)} required type="text" className="w-full border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="Website, chatbot, AI tool..." />
-              </label>
+          <form className="border border-primary/35 bg-white/92 px-5 py-6 shadow-[0_24px_90px_rgba(0,82,204,0.12)] backdrop-blur sm:px-6 md:px-8 md:py-7" onSubmit={handleSubmit}>
+            <div className="mb-5">
+              <h2 className="text-3xl font-manrope font-extrabold tracking-tight text-on-surface md:text-4xl xl:text-4xl">Gửi yêu cầu tư vấn</h2>
+              <p className="mt-2 text-base font-semibold text-on-surface-variant">Điền thông tin, Elysium sẽ liên hệ lại.</p>
             </div>
 
-            <label className="mt-5 block space-y-1.5">
-              <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Ngân sách dự kiến</span>
-              <input value={budget} onChange={(event) => setBudget(event.target.value)} type="text" className="w-full border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="Ví dụ: 3-5 triệu hoặc chưa xác định" />
+            <div className="grid gap-x-5 gap-y-4 sm:grid-cols-2">
+              <label className="space-y-1.5">
+                <span className="text-sm font-bold text-on-surface">Tên <span className="text-primary">*</span></span>
+                <input id="name" name="name" value={name} onChange={(event) => setName(event.target.value)} required type="text" autoComplete="name" className="h-11 w-full border border-outline-variant/60 bg-white px-4 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary md:h-12" placeholder="Nguyễn Văn A" />
+              </label>
+
+              <label className="space-y-1.5">
+                <span className="text-sm font-bold text-on-surface">Số điện thoại / Zalo <span className="text-primary">*</span></span>
+                <input id="phone" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} required type="tel" autoComplete="tel" className="h-11 w-full border border-outline-variant/60 bg-white px-4 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary md:h-12" placeholder="0338 994 373" />
+              </label>
+
+              <label className="space-y-1.5">
+                <span className="text-sm font-bold text-on-surface">Email</span>
+                <input id="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="email" className="h-11 w-full border border-outline-variant/60 bg-white px-4 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary md:h-12" placeholder="ban@example.com" />
+              </label>
+
+              <label className="space-y-1.5">
+                <span className="text-sm font-bold text-on-surface">Nhu cầu <span className="text-primary">*</span></span>
+                <input id="need" name="need" value={need} onChange={(event) => setNeed(event.target.value)} required type="text" autoComplete="off" className="h-11 w-full border border-outline-variant/60 bg-white px-4 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary md:h-12" placeholder="Website, chatbot, AI tool..." />
+              </label>
+            </div>
+
+            <label className="mt-4 block space-y-1.5">
+              <span className="text-sm font-bold text-on-surface">Ngân sách dự kiến</span>
+              <input id="budget" name="budget" value={budget} onChange={(event) => setBudget(event.target.value)} type="text" autoComplete="off" className="h-11 w-full border border-outline-variant/60 bg-white px-4 text-base font-semibold text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary md:h-12" placeholder="Ví dụ: 3-5 triệu hoặc chưa xác định" />
             </label>
 
-            <label className="mt-5 block space-y-1.5">
-              <span className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-on-surface-variant">Mô tả yêu cầu *</span>
-              <textarea value={message} onChange={(event) => setMessage(event.target.value)} required rows={3} className="w-full resize-none border-b border-outline-variant/40 bg-transparent py-2.5 text-base font-semibold leading-relaxed text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary" placeholder="Mục tiêu, số trang, tính năng cần có hoặc mẫu bạn thích..." />
+            <label className="mt-4 block space-y-1.5">
+              <span className="text-sm font-bold text-on-surface">Mô tả yêu cầu <span className="text-primary">*</span></span>
+              <textarea id="message" name="message" value={message} onChange={(event) => setMessage(event.target.value)} required rows={3} className="w-full resize-none border border-outline-variant/60 bg-white px-4 py-3 text-base font-semibold leading-relaxed text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-primary xl:min-h-24" placeholder="Mục tiêu, số trang, tính năng cần có hoặc mẫu bạn thích..." />
             </label>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button type="submit" className="inline-flex h-12 flex-1 items-center justify-center gap-3 rounded-none bg-primary px-7 text-sm font-bold text-white transition-all hover:bg-primary-container active:scale-[0.98]">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <button type="submit" className="inline-flex h-[3.25rem] flex-1 items-center justify-center gap-3 bg-primary px-7 text-base font-bold text-white transition-colors hover:bg-primary-container active:scale-[0.98] md:h-14">
                 Gửi yêu cầu qua Email
                 <Send className="h-4 w-4" />
               </button>
-              <a href={`https://zalo.me/${company.phone}`} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center rounded-none bg-on-surface px-7 text-sm font-bold text-white transition-all hover:bg-primary active:scale-[0.98]">
+              <a href={`https://zalo.me/${company.phone}`} target="_blank" rel="noreferrer" className="inline-flex h-[3.25rem] items-center justify-center bg-on-surface px-9 text-base font-bold text-white transition-colors hover:bg-primary active:scale-[0.98] md:h-14">
                 Nhắn Zalo
               </a>
             </div>
-          </motion.form>
+          </form>
         </div>
       </section>
     </main>
